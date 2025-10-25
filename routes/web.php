@@ -8,12 +8,16 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/teste', function(){
-    return view('teste');
-})->name("dashboard"); //<---retorno depois do login que estava dando erro
+Route::middleware("auth")->group(function () {
 
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
+    Route::get('/tarrpt', function(){
+        return view('tarrpt');
+    })->name("dashboard"); //<---retorno depois do login que estava dando erro
+
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+            ->name('logout');
+
+});
 
 
 require __DIR__.'/auth.php';

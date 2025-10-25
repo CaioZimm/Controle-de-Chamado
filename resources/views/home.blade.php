@@ -5,9 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
+        
 
     </head>
-    <body class="flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
-        <button> <a href="./login" > Login </a> </button>
+    <body>
+    <h1 class="text-2xl font-bold mb-6 text-center">Sistema de Armazenamento de RPT da Target</h1>
+        <button href="./login" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            Login
+        </button>
     </body>
 </html>

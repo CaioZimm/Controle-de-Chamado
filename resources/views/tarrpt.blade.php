@@ -6,11 +6,10 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <body>
-    <h1>login funcionando
-    </h1>
+    <h1>login funcionando</h1>
     <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button>Sair</button>
+        @csrf
+        <button>Logout</button>
     </form>
 </body>
 </html>
