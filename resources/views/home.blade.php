@@ -8,6 +8,6 @@
 
     </head>
     <body class="flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
-        <h1> TARRPT </h1>
+        <button> <a href="./login" > Login </a> </button>
     </body>
 </html>
