@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/', function () {
-    return view('home');
+    return view('auth/login');
 });
 
 Route::middleware("auth")->group(function () {
