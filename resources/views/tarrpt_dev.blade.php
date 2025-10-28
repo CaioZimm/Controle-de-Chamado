@@ -20,31 +20,41 @@
     </header>
 
     <main>
-        <box styles="width: 100px; background-color: rgb(96 139 168 / 0.2); border: 2px solid rgb(96 139 168); border-radius: 5px;">
-            <div>
-                <label>Versão</label>
-                <input></input>
-            </div>
+        <form class="width: 100px; background-color: rgb(96 139 168 / 0.2); border: 2px solid rgb(96 139 168); border-radius: 5px;">
+            <div>    
+                <!--Versão-->
+                <div style="display: flex; flex-direction: column;" >
+                    <label>Versão:</label>
+                    <input></input>
+                </div>
 
-            <div>
-                <label>Cliente</label>
-                <input></input>
-            </div>
+                <!--Cliente-->
+                <div style="display: flex; flex-direction: column;">
+                    <label>Cliente:</label>
+                    <input></input>
+                </div>
 
-            <div>
-                <label>Tela</label>
-                <input></input>
+                <!--Tela-->
+                <div style="display: flex; flex-direction: column;">
+                    <label>Tela:</label>
+                    <input></input>
+                </div>
+
+                <!--Segmento-->
+                <div style="display: flex; flex-direction: column;">
+                    <label>Segmento:</label>
+                    <input></input>
+                </div>
+
+                <!--Endereço URL-->
+                <div style="display: flex; flex-direction: column;">
+                    <label>Endereço URL:</label>
+                    <input></input>
+                </div>
+
+                <button style="background: green;">Enviar Arquivo</button>
             </div>
-            <div>
-                <label>Segmento</label>
-                <input></input>
-            </div>
-            <div>
-                <label>Endereço</label>
-                <input></input>
-            </div>
-            <button style="background: green;">Enviar Arquivo</button>
-        </box>
+        </form>
     </main>
 </body>
 </html>
