@@ -71,7 +71,6 @@
                     </div>
                 </div>
             </form>
-
             <x-cards-rpt :rpt="$rpt" />
         </div>
     </main>

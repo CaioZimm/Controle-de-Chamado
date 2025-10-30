@@ -12,6 +12,8 @@ use Illuminate\View\View;
 class AuthenticatedSessionController extends Controller
 {
     /**
+     *
+
      * Display the login view.
      */
     public function create(): View
@@ -19,17 +21,36 @@ class AuthenticatedSessionController extends Controller
         return view('auth.login');
     }
 
+
     /**
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = $request->user();
+
+        $tipo = strtolower($user->time);
+
+        if ($tipo === 'd') {
+            return redirect()->route('tarrpt_dev.index'); // ou direto /tarrpt_dev
+        }
+
+        if ($tipo === 's') {
+            return redirect()->route('tarrpt.index'); // ou direto /tarrpt
+        }
+
+        return redirect('/'); // fallback padrão
     }
+
+
+    public function devIndex(){
+        $rpt = \App\Models\Tarrpt::paginate(10); // 10 por página, você pode alterar
+        return view('tarrpt_dev', compact('rpt'));
+    }
+
 
     /**
      * Destroy an authenticated session.
@@ -43,18 +64,5 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
-    }
-    
-    protected function authenticated($request, $user)
-    {
-        if ($user->time === 'd') {
-            return redirect('/tarrpt_up');
-        }
-
-        if ($user->time === 's') {
-            return redirect('/tarrpt');
-        }
-
-        return redirect('/home'); // fallback padrão
     }
 }
