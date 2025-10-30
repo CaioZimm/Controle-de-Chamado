@@ -11,9 +11,10 @@ class RptController extends Controller
      * Display a listing of the resource.
      */
     public function index(){
-        $rpt = Tarrpt::all(); // pega todos os registros
-        return view('tarrpt', compact('rpt')); //nome da tabela para retornar e nome da view blade
+        $rpt = Tarrpt::paginate(10); // ✅ método links $rpt
+        return view('tarrpt', compact('rpt'));
     }
+
 
 
     /**

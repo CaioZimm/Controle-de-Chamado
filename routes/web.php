@@ -11,30 +11,34 @@ Route::middleware("guest")->group(function () {
     });
 });
 
-Route::post('/tarrpt', [RptController::class, 'store'])->name('tarrpt.store');
 
 
-Route::middleware("auth")->group(function () {
-    
-    Route::get('/tarrpt', function(){
-        
-        $user=auth::user();
-        if(!$user){
-            return view('/login');
-        }
-        if($user->time=='D'){
-            return view('/tarrpt_dev');
-        }
-        elseif($user->time=='S'){
-            return view('/tarrpt');
-        }
-        else{
-            return redirect ('/logout');
-        }})->name("tarrpt.index"); //<---retorno depois do login que estava dando erro
+Route::middleware('auth')->group(function () {
 
-        Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
-    });
+    // rota para listar relatórios
+    Route::get('/tarrpt', [RptController::class, 'index'])->name('tarrpt.index');
+
+    // rota para criar relatório
+    Route::post('/tarrpt', [RptController::class, 'store'])->name('tarrpt.store');
+
+    // dashboard redirecionando pelo tipo de usuário
+    Route::get('/dashboard', function(){
+        $user = auth::user();
+        if (!$user) return redirect()->route('login');
+
+        if ($user->time=='D'){
+            $rpt = \App\Models\Tarrpt::all(); // pegar todos os RPTs
+            return view('tarrpt_dev', compact('rpt'));
+        } elseif ($user->time=='S'){
+            return redirect()->route('tarrpt.index'); // ✅ return necessário
+        } else {
+            return redirect('/logout');
+        }
+    })->name("/dashboard");
+
+    // logout
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+});
 
 
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
