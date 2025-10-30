@@ -19,7 +19,7 @@
 
     <main class="p-6">
 
-       <div class="max-w-lg mx-auto bg-white/10 p-4 rounded-xl shadow-lg backdrop-blur-sm border border-white/20">
+       <div style=" width: 65%; " class="mx-auto bg-white/10 p-4 rounded-xl shadow-lg backdrop-blur-sm border border-white/20">
 
             <form method="GET" action="{{ route('tarrpt.index') }}">
                 @csrf
@@ -54,7 +54,7 @@
 
 
                 <div styles="display: flex; justify-content: center;" class="flex flex-col justify-end items-end h-16">
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-150 h-10">
+                    <button type="submit" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-lg transition duration-150 h-10">
                         Buscar
                     </button>
                 </div>
