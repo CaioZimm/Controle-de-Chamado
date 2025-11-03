@@ -5,6 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Tarrpt extends Model {
-    protected $table = 'rpt';//setando a tabela rpt
-    protected $fillable = ['versao', 'tela', 'segmento', 'data', 'hora', 'endereco', 'cliente' ];
+    protected $table = 'rpt';
+    protected $fillable = [
+        'nome',
+        'versao',
+        'tela',
+        'segmento',
+        'data',
+        'hora',
+        'endereco',
+        'cliente'
+    ];
+
+    // ✅ Opcional: Definir casts para data se quiser
+    protected $casts = [
+        'data' => 'date',
+    ];
 }

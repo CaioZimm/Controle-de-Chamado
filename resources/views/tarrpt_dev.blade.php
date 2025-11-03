@@ -30,37 +30,30 @@
                         <input type="text" name="versao" placeholder="Versão">
                     </div>
 
-                      <!-- Segmento -->
+                    <!-- Segmento - AGORA COM DROPDOWN -->
                     <div style="display: flex; flex-direction: column;">
                         <label>Segmento:</label>
-                        <input type="text" name="segmento" placeholder="Segmento">
+                        <select name="segmento" class="form-select">
+                            <option value="">Selecione um segmento</option>
+                            @foreach($segmentos as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
-                      <!-- Tela -->
+                    <!-- Tela -->
                     <div style="display: flex; flex-direction: column;">
                         <label>Tela:</label>
                         <input type="text" name="tela" placeholder="Tela">
                     </div>
 
-                      <!-- Data -->
-                    <div style="display: flex; flex-direction: column;">
-                        <label>Data:</label>
-                        <input type="text" name="data" placeholder="Data">
-                    </div>
-
-                      <!-- Hora -->
-                    <div style="display: flex; flex-direction: column;">
-                        <label>Hora:</label>
-                        <input type="text" name="hora" placeholder="Hora">
-                    </div>
-
-                       <!-- Cliente -->
+                    <!-- Cliente -->
                     <div style="display: flex; flex-direction: column;">
                         <label>Cliente:</label>
                         <input type="text" name="cliente" placeholder="Cliente">
                     </div>
 
-                      <!-- Endereço URL -->
+                    <!-- Endereço URL -->
                     <div style="display: flex; flex-direction: column;">
                         <label for="file">Escolha o arquivo:</label>
                         <input type="file" name="file" id="file" required>
@@ -73,7 +66,7 @@
                     </div>
                 </div>
             </form>
-            <x-cards-rpt :rpt="$rpt" />
+            <x-cards-rpt :rpt="$rpt" :segmentos="$segmentos" />
         </div>
     </main>
 </html>

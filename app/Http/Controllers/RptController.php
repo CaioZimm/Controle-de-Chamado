@@ -12,70 +12,80 @@ class RptController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request) {
+        // ✅ Definir diretamente no método
+        $segmentos = [
+            1 => 'Varejo',
+            2 => 'Atacado',
+            3 => 'E-commerce',
+            4 => 'Serviços',
+            5 => 'Indústria',
+            6 => 'Agronegócio',
+            7 => 'Saúde',
+            8 => 'Educação',
+            9 => 'Financeiro',
+            10 => 'Outros'
+        ];
+
         $rpt = DB::table("rpt")
                 ->whereNotNull("endereco")
                 ->where(function($sql) use ($request) {
-
-                   //if ( ($request->versao) == null && ($request->cliente) == null && ($request->segmento) == null && ($request->tela) == null ) {
-                   //     return;
-                   // }
-                   // 
                     if ($request->cliente) {
                         $sql->where("cliente", $request->cliente);
                     } else {
-                        $sql->whereNull("cliente"); //unico que pode retornar valor nulo
-                    } 
+                        $sql->whereNull("cliente");
+                    }
                     if ($request->versao) {
                         $sql->where("versao", $request->versao);
-                    } 
+                    }
                     if ($request->segmento){
                         $sql->where("segmento", $request->segmento);
                     }
                     if ($request->tela) {
                         $sql->where("tela", $request->tela);
                     }
-                }) ->paginate(10)->withQueryString();
-        
-        return view('tarrpt', compact('rpt'));
-    }
+                })
+                ->orderBy('versao', 'desc')
+                ->orderBy('data', 'desc')
+                ->orderBy('hora', 'desc')
+                ->paginate(10)->withQueryString();
 
-    /*
-     * Show the form for creating a new resource.
-     */
-
-    public function create()
-    {
-        //
+        return view('tarrpt', [
+            'rpt' => $rpt,
+            'segmentos' => $segmentos
+        ]);
     }
 
     public function store(Request $request){
-
-        $path = $request->file('file')->store('uploads', 'public'); //up pasta public
-
         $request->validate([
             'versao'   => 'required|numeric',
             'tela'     => 'nullable|string',
-            'segmento' => 'nullable|string',
-            'data'     => 'nullable|date',
-            'hora'     => 'nullable|string',
+            'segmento' => 'nullable|integer', // ✅ Agora é integer
             'file'     => 'required|file',
             'cliente'  => 'nullable|string',
         ]);
 
-        //dd($request->all());//para teste do array que retorna
+        $file = $request->file('file');
+        $path = $file->store('uploads', 'public');
 
-        //atencao, esse tarrpt so era para estar com T maisculo, mas so pega assim
+        $dataAtual = now()->format('Y-m-d');
+        $horaAtual = now()->format('H:i:s');
+
         Tarrpt::create([
+            'nome'     => $file->getClientOriginalName(),
             'versao'   => $request->versao,
-            'segmento' => $request->segmento,
+            'segmento' => $request->segmento, // ✅ Salva o número no banco
             'tela'     => $request->tela,
-            'data'     => $request->data,
-            'hora'     => $request->hora,
-            'endereco' => $path, //up pasta public
+            'data'     => $dataAtual,
+            'hora'     => $horaAtual,
+            'endereco' => $path,
             'cliente'  => $request->cliente,
         ]);
+
         return redirect()->back()->with('success', 'Nova linha adicionada na tabela RPT!');
     }
+
+    // ... outros métodos
+
 
     /**
      * Display the specified resource.

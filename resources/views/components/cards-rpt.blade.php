@@ -1,41 +1,172 @@
-@props(['rpt' => collect()])
-<div>
-    <h1 class="text-2xl font-bold text-white mb-4 border-b pb-2 border-white/30">Lista de RPTs</h1>
+@props(['rpt' => collect(), 'segmentos' => []])
+
+<div class="rpt-container">
+    <h1 class="titulo">Lista de RPTs</h1>
 
     @if($rpt->isEmpty())
-        <p class="text-white bg-red-500/50 p-4 rounded-lg">Nenhum rpt encontrado.</p>
+        <p class="alerta">Nenhum rpt encontrado.</p>
     @else
-        <div class="overflow-x-auto shadow-lg rounded-lg">
-            <table class="min-w-full divide-y divide-gray-200 bg-white bg-opacity-90">
-                <thead class="bg-blue-500 text-white">
-                    <tr> <!-- cabecalho da tabela-->
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Versão</th>
-                        <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Clientes</th> -->
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Segmento</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Tela</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Arquivo</th> <!-- Alterado para mostrar o arquivo -->
+        <div class="tabela-wrapper">
+            <table class="tabela-rpt">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th class="col-versao">Versão</th>
+                        <th>Clientes</th>
+                        <th>Segmento</th>
+                        <th>Tela</th>
+                        <th>Data</th>
+                        <th class="col-acoes">Arquivo</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100"> <!-- conteudo da tabela-->
+                <tbody>
                     @foreach($rpt as $item)
-                        <tr class="hover:bg-gray-200">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $item->versao }}</td>
-                            {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $item->cliente }}</td> --}}
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $item->segmento }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $item->tela }}</td>
-
-                            <!-- Exibição do arquivo com base no endereço -->
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-100">
-                                  <a href="{{ Storage::url($item->endereco) }}" target="_blank" style=" border-radius: 3px;" class="bg-blue-500 text-blue-100 hover:bg-blue-800">Baixar RPT</a>
-
+                        <tr>
+                            <td>{{ $item->nome }}</td>
+                            <td class="col-versao">{{ $item->versao }}</td>
+                            <td>{{ $item->cliente }}</td>
+                            <td>
+                                {{-- ✅ CONVERTE NÚMERO PARA NOME DO SEGMENTO --}}
+                                @isset($segmentos[$item->segmento])
+                                    {{ $segmentos[$item->segmento] }}
+                                @else
+                                    {{ $item->segmento ?? 'N/A' }}
+                                @endisset
+                            </td>
+                            <td>{{ $item->tela }}</td>
+                            <td>{{ \Carbon\Carbon::parse($item->data)->format('d/m/Y') }}</td>
+                            <td class="col-acoes">
+                                <a href="{{ Storage::url($item->endereco) }}" target="_blank" class="botao"
+                                   download="{{ $item->nome }}">
+                                   Baixar RPT
+                                </a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        <div class="mt-4">
+
+        <div class="paginacao">
             {{ $rpt->links() }}
         </div>
     @endif
 </div>
+
+<style>
+    body {
+        font-family: system-ui, Arial, sans-serif;
+        background-color: #0f172a;
+    }
+
+    .rpt-container {
+        padding: 20px;
+        color: #fff;
+    }
+
+    .titulo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 16px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 8px;
+    }
+
+    .alerta {
+        background-color: rgba(239, 68, 68, 0.6);
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .tabela-wrapper {
+        overflow-x: auto;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .tabela-rpt {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #111;
+    }
+
+    .tabela-rpt thead {
+        background-color: #3b82f6;
+        color: white;
+    }
+
+    .tabela-rpt th,
+    .tabela-rpt td {
+        padding: 12px 16px;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* ✅ Títulos centralizados */
+    .tabela-rpt th {
+        text-align: center;
+        font-weight: 600;
+    }
+
+    /* ✅ Conteúdo das células também centralizado */
+    .tabela-rpt td {
+        text-align: center;
+    }
+
+    /* ✅ Coluna Versão - título e dados centralizados */
+    .tabela-rpt th.col-versao,
+    .tabela-rpt td.col-versao {
+        text-align: center;
+    }
+
+    /* ✅ Coluna Data e Hora - largura fixa */
+    .tabela-rpt th:nth-child(6), /* Data */
+    .tabela-rpt th:nth-child(7) { /* Hora */
+        width: 120px;
+        min-width: 120px;
+        max-width: 120px;
+    }
+
+    .tabela-rpt td:nth-child(6), /* Data */
+    .tabela-rpt td:nth-child(7) { /* Hora */
+        width: 120px;
+        min-width: 120px;
+        max-width: 120px;
+    }
+
+    /* ✅ Coluna Arquivo - título centralizado, botão centralizado e coluna mais estreita */
+    .tabela-rpt th.col-acoes {
+        text-align: center;
+        width: 150px;
+        min-width: 150px;
+        max-width: 150px;
+    }
+    .tabela-rpt td.col-acoes {
+        text-align: center;
+        width: 150px;
+        min-width: 150px;
+        max-width: 150px;
+    }
+
+    .botao {
+        background-color: #3b82f6;
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background 0.2s;
+        white-space: nowrap;
+        display: inline-block;
+    }
+
+    .botao:hover {
+        background-color: #1e40af;
+    }
+
+    .paginacao {
+        margin-top: 16px;
+    }
+</style>
