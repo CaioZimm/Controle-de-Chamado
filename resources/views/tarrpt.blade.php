@@ -26,22 +26,30 @@
                         <img src="{{ asset('images/target_logo.png') }}" alt="Logo" class="h-16 w-auto drop-shadow-md">
                         <span class="font-semibold text-lg tracking-wide"></span>
                     </div>
-                        @if ($time == 'D')
-                            <button 
-                                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-5 rounded-md transition" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#modalDev"> 
-                                Enviar Arquivos
-                            </button>
-                        @endif
-                    <div>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button class="bg-red-700 hover:bg-red-600 text-white font-semibold py-2 px-5 rounded-md transition" data-bs-toggle="modal" data-bs-target="#meuModal ">
-                                Logout
-                            </button>
-                        </form>
-                    </div>
+                    <div style="gap: 9px; display: flex;">
+                    @if ($time == 'D')
+                        <button 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#modalDev"
+                            style="background-color: transparent; border: none; color: black; padding: 10px 15px; :hover {text-decoration: underline; cursor: pointer; font-size: 16px;"> 
+                            Enviar Arquivos RPTs
+                        </button>
+                    @endif
+                    <!-- <button
+                        style="background-color: transparent; border: none; color: black; padding: 10px 15px; cursor: pointer; font-size: 16px;"> 
+                        Registrar Organização
+                    </button>
+                    <button
+                        style="background-color: transparent; border: none; color: black; padding: 10px 15px; cursor: pointer; font-size: 16px;"> 
+                        Registrar Cliente
+                    </button> -->
+                </div>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="bg-red-700 hover:bg-red-600 text-white font-semibold py-1 px-2 rounded-md transition" data-bs-toggle="modal" data-bs-target="#meuModal ">
+                            Logout
+                        </button>
+                    </form>
                 </div>
             </div>
         </nav>
