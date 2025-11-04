@@ -57,13 +57,13 @@ class RptController extends Controller
         $request->validate([
             'versao'   => 'required|numeric',
             'tela'     => 'nullable|string',
-            'segmento' => 'nullable|integer', 
+            'segmento' => 'nullable|integer',
             'file'     => 'required|file',
             'id_cliente'  => 'nullable|string',
         ]);
 
         $file = $request->file('file');
-        $path = $file->store('uploads', 'public');
+        $path = $file->store('uploads', 'public'); 
 
         $dataAtual = now()->format('Y-m-d');
         $horaAtual = now()->format('H:i:s');

@@ -8,7 +8,7 @@ CREATE TABLE organizacao(
 
 CREATE TABLE cliente(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_organizacao FOREIGN KEY,
+    id_organizacao INT(6),
     cnpj VARCHAR(32),
     nome VARCHAR(64),
     segmento INT(2),
@@ -18,7 +18,7 @@ CREATE TABLE cliente(
 
 CREATE TABLE rpt(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente FOREIGN KEY,
+    id_cliente INT(6),
     versao INT,
     data DATE,
     hora VARCHAR(8),
