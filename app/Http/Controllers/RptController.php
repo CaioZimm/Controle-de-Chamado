@@ -27,6 +27,10 @@ class RptController extends Controller
         ];
 
         $rpt = DB::table("rpt")
+                ->select(
+                    "rpt.*",
+                    DB::raw("DATE_FORMAT(rpt.data, '%d/%m/%Y') AS data_fmt")
+                )
                 ->whereNotNull("endereco")
                 ->where(function($sql) use ($request) {
                     if ($request->cliente) {
