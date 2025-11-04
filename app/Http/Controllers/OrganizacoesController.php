@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
-use App\Models\Organizacao;
+use App\Models\Organizacoes;
 use Illuminate\Http\Request;
 
 class OrganizacoesController extends Controller{
@@ -19,23 +19,23 @@ class OrganizacoesController extends Controller{
                 ->orderBy('nome', 'desc')
                 ->get();
 
-        return view('modal-criar-organizacao', compact('organizacao'));
+        return view('modal-criar-organizacao', compact('organizacoes'));
     }
 
     public function store(Request $request){
-        $request->validate([
-            'name'     => 'required|string',
-            'segmento' => 'nullable|integer',
-        ]);
+        // $request->validate([
+        //     'name'     => 'required|string',
+        //     'segmento' => 'nullable|integer',
+        // ]);
 
-        organizacao::create([
+        Organizacoes::create([
             'nome'     => $request->name,
             'segmento' => $request->segmento, 
         ]);
 
 
         //Para editar o campo
-        $registro = organizacao::find(1);
+        $registro = Organizacao::find(1);
         if ($registro){
             $registro->nome = $novoNome;
             $registro->segmento = $novoSeguimento;
@@ -43,7 +43,7 @@ class OrganizacoesController extends Controller{
             $registro->save();
         }
 
-        return redirect()->back();
+        // return redirect()->back();
     }
 
 

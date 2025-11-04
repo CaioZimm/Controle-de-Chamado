@@ -72,7 +72,6 @@ class RptController extends Controller
             'cliente'  => $request->id_cliente,
         ]);
 
-        $organizacoesController->store($request);
 
         return redirect()->back();
     }
