@@ -14,7 +14,7 @@ class Tarrpt extends Model {
         'data',
         'hora',
         'endereco',
-        'id_cliente'
+        'cliente'
     ];
 
     protected $casts = [

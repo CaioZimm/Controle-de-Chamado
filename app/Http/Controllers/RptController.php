@@ -13,18 +13,7 @@ class RptController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request) {
-        $segmentos = [
-            1 => 'Varejo',
-            2 => 'Atacado',
-            3 => 'E-commerce',
-            4 => 'Serviços',
-            5 => 'Indústria',
-            6 => 'Agronegócio',
-            7 => 'Saúde',
-            8 => 'Educação',
-            9 => 'Financeiro',
-            10 => 'Outros'
-        ];
+        $segmentos = [];
 
         $rpt = DB::table("rpt")
                 ->select(
@@ -83,7 +72,9 @@ class RptController extends Controller
             'cliente'  => $request->id_cliente,
         ]);
 
-        return redirect()->back()->with('success', 'Nova linha adicionada na tabela RPT!');
+        $organizacoesController->store($request);
+
+        return redirect()->back();
     }
 
 

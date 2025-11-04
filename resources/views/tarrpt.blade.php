@@ -36,6 +36,10 @@
                         <button data-bs-toggle="modal" data-bs-target="#modalDev" class="btn-rpt">
                             Enviar Arquivos RPTs
                         </button>
+                        <button data-bs-toggle="modal" data-bs-target="#modalOrganizacao" class="btn-rpt">
+                            Criar ou editar Organização
+                        </button>
+
                         @endif
                     </div>
 
@@ -121,7 +125,8 @@
         </div>
     </main>
 
-    @include('modal.modal_dev')
+    @include('modal.modal-enviar-rpt')
+    @include('modal.modal-criar-oragnizacao')
 </body>
 </html>
 
