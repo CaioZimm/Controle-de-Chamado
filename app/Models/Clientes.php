@@ -13,15 +13,4 @@ class Clientes extends Model {
         'id_organizacao', 
     ];
 
-    //cliente 1:1 organização
-    public function organizacao()
-    {
-        return $this->belongsTo(Organizacoes::class, 'id_organizacao', 'id');
-    }
-
-    // cliente 1:N  RPTs
-    public function rpts()
-    {
-        return $this->hasMany(Tarrpt::class, 'id_cliente', 'id');
-    }
 }

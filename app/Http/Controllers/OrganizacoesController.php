@@ -28,6 +28,11 @@ class OrganizacoesController extends Controller{
         //     'segmento' => 'nullable|integer',
         // ]);
 
+        if(DB::table("organizacao") 
+            ->where('nome', $request->nome)->exists()){
+                return redirect()->back()->withErrors(['nome'=>'já existe no registro']); //tem que chamar na view
+        }
+
         Organizacoes::create([
             'nome'     => $request->nome,
             'segmento' => $request->segmento, 

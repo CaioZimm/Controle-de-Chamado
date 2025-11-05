@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use User;
 use App\Models\Clientes;
 use Illuminate\Http\Request;
 
@@ -24,9 +25,19 @@ class ClientesController extends Controller{
 
     public function store(Request $request){
 
+        if(DB::table("cliente") 
+            ->where('nome', $request->nome)->exists()){
+                return redirect()->back()->withErrors(['nome'=>'já existe no registro']); //tem que chamar na view
+        }
+
+        if(DB::table("cliente")
+            ->where('cnpj', $request->cnpj)->exists()){
+                return redirect()->back()->withErrors(['cnpj'=>'já existe no registro']);    
+        }
+            
         Clientes::create([
-            'cnpj'           => $request->cnpj,
             'nome'           => $request->nome,
+            'cnpj'           => $request->cnpj,
             'segmento'       => $request->segmento,
             'id_organizacao' => $request->id_organizacao, 
         ]);

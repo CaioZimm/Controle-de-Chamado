@@ -12,10 +12,14 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- CSS Personalizado -->
+    <!-- ✅ CSS do Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+
+    
+    <!-- CSS da outra pasta -->
     <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -88,6 +92,7 @@
                         <input type="text" name="id_cliente" placeholder="Digite Cliente, CNPJ ou Organização" class="form-input"
                             value="{{ request('id_cliente') }}">
                     </div>
+                    
 
                     <div class="form-actions">
                     <button type="submit" class="btn-search">
@@ -100,11 +105,36 @@
         </div>
     </main>
 
+    @include('modal.modal-detalhes-rpt')
     @include('modal.modal-enviar-rpt')
     @include('modal.modal-criar-orgnizacao')
     @include('modal.modal-criar-cliente')
+
+    <!-- ✅ JS: jQuery, Bootstrap e Select2 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- ✅ NOSSO SCRIPT -->
+    <script>
+    $(document).ready(function() {
+        // 🔹 Quando a modal for exibida:
+        $('#organizacaoModal').on('shown.bs.modal', function () {
+
+            // 🔹 Inicializa o Select2 dentro da modal
+            $('#organizacao_id').select2({
+                dropdownParent: $('#organizacaoModal'), // Garante que o menu fique visível dentro da modal
+                placeholder: "Selecione a Organização",
+                allowClear: true,
+                width: '100%'
+            });
+        });
+    });
+    </script>
 </body>
 </html>
+
+
 
 <style>
     /* Reset e configurações básicas */

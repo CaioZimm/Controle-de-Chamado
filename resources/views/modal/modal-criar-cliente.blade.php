@@ -1,8 +1,4 @@
 <head>
-
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
 </head>
 
 <main class="p-6">
@@ -30,7 +26,7 @@
 
                         <div class="flex flex-col">
                             <label class="font-semibold mb-1">Cnpj:</label>
-                            <input type="text" name="cnpj" placeholder="Não Obrigatorio"
+                            <input type="number" name="cnpj" placeholder="Não Obrigatorio"
                                 class="rounded-lg p-2 text-sm border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
                         </div>
 
@@ -41,8 +37,36 @@
 
                         <div class="flex flex-col">
                              <label class="font-semibold mb-1">Organização:</label>
-                            <select name="nome" id="organizacao_id" class="form-control">
+                            <select name="id_organizacao" id="organizacao_id" class="form-control select2">
                                 <option value="">Selecione a Organização</option>
+                                <option value="1">Selecione a Organização</option>
+                                <option value="2">Selecione a Organização</option>
+                                <option value="3">Selecione a Organização</option>
+                                <option value="">Selecione a Organização</option>
+                                <option value="1">Selecione a Organização</option>
+                                <option value="2">Selecione a Organização</option>
+                                <option value="3">Selecione a Organização</option>
+                                <option value="">Selecione a Organização</option>
+                                <option value="1">Selecione a Organização</option>
+                                <option value="2">Selecione a Organização</option>
+                                <option value="3">Selecione a Organização</option>
+                                <option value="">Selecione a Organização</option>
+                                <option value="1">Selecione a Organização</option>
+                                <option value="2">Selecione a Organização</option>
+                                <option value="3">Selecione a Organização</option>
+                                <option value="">Selecione a Organização</option>
+                                <option value="1">Selecione a Organização</option>
+                                <option value="2">Selecione a Organização</option>
+                                <option value="3">Selecione a Organização</option>
+                                <option value="">Selecione a Organização</option>
+                                <option value="1">Selecione a Organização</option>
+                                <option value="2">Selecione a Organização</option>
+                                <option value="3">Selecione a Organização</option>
+                                <option value="">Selecione a Organização</option>
+                                <option value="1">Selecione a Organização</option>
+                                <option value="2">Selecione a Organização</option>
+                                <option value="3">Selecione a Organização</option>
+
                             </select>
                         </div>
 
@@ -57,4 +81,6 @@
          </div>
     </div>
 </main>
+
+
 

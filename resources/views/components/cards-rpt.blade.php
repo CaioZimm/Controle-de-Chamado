@@ -1,5 +1,5 @@
 @props(['rpt' => collect()])
-<div>
+<div class = 'card-rpt'>
     <h1 class="text-2xl font-bold text-white mb-4 border-b pb-2 border-white/30">Lista de RPTs</h1>
 
     @if($rpt->isEmpty())
@@ -48,4 +48,3 @@
         </div>
     @endif
 </div>
-@include('modal.modal-detalhes-rpt')

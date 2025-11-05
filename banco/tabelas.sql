@@ -28,6 +28,11 @@ CREATE TABLE rpt(
     tela VARCHAR(64),
     nome VARCHAR(64),
     segmento INT,
+    detalhes TEXT,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE anexos(
+    id_anexos,
 );
