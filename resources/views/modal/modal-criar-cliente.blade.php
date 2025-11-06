@@ -6,7 +6,7 @@
         <div class="modal-dialog">
 
             <!-- mudar a rota depois de criar o controller -->
-            <form action="{{ route('clientes.store') }}" method="POST" enctype="multipart/form-data"> 
+            <form action="{{ route('clientes.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-content">
@@ -36,37 +36,9 @@
                         </div>
 
                         <div class="flex flex-col">
-                             <label class="font-semibold mb-1">Organização:</label>
+                            <label class="font-semibold mb-1">Organização:</label>
                             <select name="id_organizacao" id="organizacao_id" class="form-control select2">
                                 <option value="">Selecione a Organização</option>
-                                <option value="1">Selecione a Organização</option>
-                                <option value="2">Selecione a Organização</option>
-                                <option value="3">Selecione a Organização</option>
-                                <option value="">Selecione a Organização</option>
-                                <option value="1">Selecione a Organização</option>
-                                <option value="2">Selecione a Organização</option>
-                                <option value="3">Selecione a Organização</option>
-                                <option value="">Selecione a Organização</option>
-                                <option value="1">Selecione a Organização</option>
-                                <option value="2">Selecione a Organização</option>
-                                <option value="3">Selecione a Organização</option>
-                                <option value="">Selecione a Organização</option>
-                                <option value="1">Selecione a Organização</option>
-                                <option value="2">Selecione a Organização</option>
-                                <option value="3">Selecione a Organização</option>
-                                <option value="">Selecione a Organização</option>
-                                <option value="1">Selecione a Organização</option>
-                                <option value="2">Selecione a Organização</option>
-                                <option value="3">Selecione a Organização</option>
-                                <option value="">Selecione a Organização</option>
-                                <option value="1">Selecione a Organização</option>
-                                <option value="2">Selecione a Organização</option>
-                                <option value="3">Selecione a Organização</option>
-                                <option value="">Selecione a Organização</option>
-                                <option value="1">Selecione a Organização</option>
-                                <option value="2">Selecione a Organização</option>
-                                <option value="3">Selecione a Organização</option>
-
                             </select>
                         </div>
 
