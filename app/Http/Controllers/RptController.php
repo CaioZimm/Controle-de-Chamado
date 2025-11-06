@@ -22,11 +22,8 @@ class RptController extends Controller
                 )
                 ->whereNotNull("endereco")
                 ->where(function($sql) use ($request) {
-                    if ($request->cliente) {
-                        $sql->where("id_cliente", $request->id_cliente)
-                        
-                        
-                        ;
+                    if ($request->id_cliente) {
+                        $sql->where("id_cliente", $request->id_cliente);
                     } else {
                         $sql->whereNull("id_cliente");
                     }

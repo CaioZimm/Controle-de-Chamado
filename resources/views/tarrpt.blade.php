@@ -70,8 +70,6 @@
             <h1 class="form-title">Painel de Consulta RPT</h1>
 
             <form method="GET" action="{{ route('tarrpt.index') }}" class="search-form">
-                @csrf
-
                 <div class="form-grid">
                     <div class="form-group">
                         <label class="form-label">Versão:</label>
@@ -163,6 +161,7 @@
                     },
                     processResults: function (data) {
                         return {
+                            
                             results: data
                         };
                     },

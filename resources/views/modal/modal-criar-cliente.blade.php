@@ -25,12 +25,14 @@
                         <x-select-segmentos-bootstrap>
                         </x-select-segmentos-bootstrap>
                     </div>
+
                     <div class="flex flex-col">
                         <label class="font-semibold mb-1">Organização:</label> 
                         <select name="id_organizacao" id="organizacao_id" class="form-control select2"> 
                             <option value="">Selecione a Organização</option>
                         </select>
                     </div>
+                    
                 <div class="modal-footer">
                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                      <button type="submit" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg">
