@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Models\Organizacoes;
+use App\Models\Clientes;
 use Illuminate\Http\Request;
 
 class OrganizacoesController extends Controller{
@@ -23,20 +24,28 @@ class OrganizacoesController extends Controller{
     }
 
     public function store(Request $request){
-        // $request->validate([
-        //     'name'     => 'required|string',
-        //     'segmento' => 'nullable|integer',
-        // ]);
 
-        if(DB::table("organizacao")
-            ->where('nome', $request->nome)->exists()){
-                return redirect()->back()->withErrors(['nome'=>'já existe no registro']); //tem que chamar na view
-        }
 
-        Organizacoes::create([
+         if(DB::table("organizacao")
+             ->where('nome', $request->nome)->exists()){
+                 return redirect()->back()->withErrors(['nome'=>'já existe no registro']); //tem que chamar na view
+         }
+
+        $organizacao = Organizacoes::create([
             'nome'     => $request->nome,
-            'segmento' => $request->segmento,
-        ]);
+            'segmento' => $request->segmento, 
+        ])->id;
+        
+
+
+        if ($request->cliente_direto == 1)
+            Clientes::create([
+                'nome'           => $request->nome,
+                'segmento'       => $request->segmento,
+                'id_organizacao' => $id_organizacao,
+            ]);
+            
+        
 
 
         //Para editar o campo
@@ -55,7 +64,7 @@ class OrganizacoesController extends Controller{
     {
         $search = $request->get('q');
 
-        $organizacoes = DB::table('organizacoes') // ajuste o nome da tabela
+        $organizacoes = DB::table('organizacao') 
                         ->where('nome', 'LIKE', "%{$search}%")
                         ->select('id', 'nome as text')
                         ->get();

@@ -25,15 +25,21 @@ class ClientesController extends Controller{
 
     public function store(Request $request){
 
+        $request->validate([
+             'nome'     => 'required|string',             
+         ]);
+
         if(DB::table("cliente")
             ->where('nome', $request->nome)->exists()){
                 return redirect()->back()->withErrors(['nome'=>'já existe no registro']); //tem que chamar na view
         }
 
-        if(DB::table("cliente")
+        
+        if($request->cnpj != null && DB::table("cliente")
             ->where('cnpj', $request->cnpj)->exists()){
                 return redirect()->back()->withErrors(['cnpj'=>'já existe no registro']);
-        }
+            }  
+
 
         Clientes::create([
             'nome'           => $request->nome,

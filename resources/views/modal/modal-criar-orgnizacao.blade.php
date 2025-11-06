@@ -25,6 +25,11 @@
                             </x-select-segmentos-bootstrap>
                         </div>
 
+                        <div class="flex flex-col">
+                            <label class="font-semibold mb-1"> Deseja criar um cliente com as mesmas características?</label>
+                            <input  type="checkbox" name="cliente_direto" value="1">
+                        </div>
+
                     <div class="modal-footer">
                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                          <button type="submit" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg">

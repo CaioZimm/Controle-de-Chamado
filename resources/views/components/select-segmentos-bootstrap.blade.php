@@ -1,4 +1,4 @@
-<label class="font-semibold mb-1">Possui Segmento Segmento?</label>
+<label class="font-semibold mb-1">Possui Segmento?</label>
 <select name="segmento" class="form-select rounded-lg p-2 text-sm border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
     <option value="">Selecione um segmento</option>
     {{-- @foreach($segmentos as $key => $value)

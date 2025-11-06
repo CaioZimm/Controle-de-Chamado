@@ -34,5 +34,5 @@ CREATE TABLE rpt(
 );
 
 CREATE TABLE anexos(
-    id_anexos,
+    id_anexos INT AUTO_INCREMENT PRIMARY KEY
 );

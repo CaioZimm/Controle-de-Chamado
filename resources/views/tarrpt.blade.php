@@ -15,7 +15,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- ✅ CSS do Select2 -->
+    <!--  CSS do Select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
 
 
@@ -27,6 +27,8 @@
 <body class="custom-body">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
+
+    <!-- NAVBAR(TIREI DO COMPONENTE POR SÒ USAR AQ) -->
     <header>
         <nav class="custom-nav">
             <div class="nav-container">
@@ -89,8 +91,7 @@
 
                     <div class="form-group">
                         <label class="form-label">Cliente ou Organização:</label>
-                        <!-- TROCA DO INPUT POR SELECT COM SELECT2 -->
-                        <select name="id_cliente" id="cliente_select" class="form-control select2">
+                        <select name="id_cliente" id="cliente_select" placeholder="Digite o cliente ou organização" class="form-control select2">
                             <option value="">Digite Cliente, CNPJ ou Organização</option>
                         </select>
                     </div>
@@ -112,15 +113,15 @@
     @include('modal.modal-criar-orgnizacao')
     @include('modal.modal-criar-cliente')
 
-    <!-- ✅ JS: jQuery, Bootstrap e Select2 -->
+    <!--  JS: jQuery, Bootstrap e Select2 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <!-- ✅ NOSSO SCRIPT -->
+    <!--  SCRIPT selct2 -->
     <script>
         $(document).ready(function() {
-            // 🔹 SELECT2 PARA BUSCA DE CLIENTES NO FORM PRINCIPAL
+            //BUSCA DE CLIENTES NO MAIN
             $('#cliente_select').select2({
                 placeholder: "Digite Cliente, CNPJ ou Organização",
                 allowClear: true,
@@ -144,9 +145,9 @@
                 }
             });
 
-            // 🔹 SELECT2 PARA ORGANIZAÇÕES NA MODAL
+            //  SELECT2 PARA ORGANIZAÇÕES NA MODAL
             $('#organizacao_id').select2({
-                dropdownParent: $('#modalClientes'), // 🔹 IMPORTANTE: usar a modal correta
+                dropdownParent: $('#modalOrganizacao'), //  
                 placeholder: "Selecione a Organização",
                 allowClear: true,
                 width: '100%',
@@ -169,7 +170,7 @@
                 }
             });
 
-            // 🔹 REINICIALIZAR SELECT2 QUANDO MODAL ABRIR (opcional)
+            //  REINICIALIZAR SELECT2 QUANDO MODAL ABRIR (opcional)
             $('#modalClientes').on('shown.bs.modal', function () {
                 $('#organizacao_id').select2({
                     dropdownParent: $('#modalClientes')
@@ -183,7 +184,6 @@
 
 
 <style>
-    /* Reset e configurações básicas */
     * {
         margin: 0;
         padding: 0;
@@ -338,7 +338,7 @@
         margin-bottom: 0.5rem;
     }
 
-    .form-input, .form-select {
+    .form-input, .form-select{
         border-radius: 8px;
         padding: 0.75rem;
         font-size: 0.875rem;
@@ -353,6 +353,21 @@
         justify-content: flex-end;
         height: 3rem;
     }
+
+    /*select2*/
+    #cliente_select + .select2 .select2-selection--single{
+        display: flex;               
+        align-items: center;
+        border-radius:8px;
+        height: 50px;
+        font-size: 0.875rem;
+        border: 1px solid #d1d5db;
+        outline: none;
+        transition: all 0.2s;
+        background: white;
+
+    }
+
 
     /* Estados de interação */
     input:focus, select:focus {
