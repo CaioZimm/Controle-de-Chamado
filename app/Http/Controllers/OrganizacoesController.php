@@ -53,7 +53,6 @@ class OrganizacoesController extends Controller{
        // if ($registro){
        //     $registro->nome = $novoNome;
        //     $registro->segmento = $novoSeguimento;
-//
        //     $registro->save();
        // }
 
