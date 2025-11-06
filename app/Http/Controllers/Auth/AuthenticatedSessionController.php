@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
         //     return redirect()->route('tarrpt.index'); // ou direto /tarrpt
         // }
 
-        return redirect('/'); // fallback padrão
+        return redirect('/home'); // fallback padrão
     }
 
 

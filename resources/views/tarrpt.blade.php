@@ -33,9 +33,9 @@
         <nav class="custom-nav">
             <div class="nav-container">
                 <div class="nav-content">
-                    <div class="logo-container">
+                    <a class="logo-container" href="{{ url('/') }}">
                         <img src="{{ asset('images/target_logo.png') }}" alt="Logo" class="logo">
-                    </div>
+                    </a>
 
                     <div class="nav-buttons">
                         @if ($time == 'D')
@@ -201,7 +201,7 @@
         display: flex;
         flex-direction: column;
         background-color: #1e3a8a;
-        background-image: url('../images/4879.jpg');
+        background-image: url('{{ asset('images/4879.jpg') }}');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
